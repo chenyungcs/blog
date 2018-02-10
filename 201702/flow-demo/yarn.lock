@@ -334,7 +334,7 @@ babylon-walk@^1.0.2:
     babel-types "^6.15.0"
     lodash.clone "^4.5.0"
 
-babylon@^6.17.4, babylon@^6.18.0:
+babylon@^6.15.0, babylon@^6.17.4, babylon@^6.18.0:
   version "6.18.0"
   resolved "http://registry.npm.taobao.org/babylon/download/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
 
@@ -1125,6 +1125,13 @@ flatten@^1.0.2:
 flow-bin@^0.65.0:
   version "0.65.0"
   resolved "http://registry.npm.taobao.org/flow-bin/download/flow-bin-0.65.0.tgz#64ffeca27211c786e2d68508c65686ba1b8a2169"
+
+flow-remove-types@^1.2.3:
+  version "1.2.3"
+  resolved "http://registry.npm.taobao.org/flow-remove-types/download/flow-remove-types-1.2.3.tgz#6131aefc7da43364bb8b479758c9dec7735d1a18"
+  dependencies:
+    babylon "^6.15.0"
+    vlq "^0.2.1"
 
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
@@ -3158,6 +3165,10 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
+
+vlq@^0.2.1:
+  version "0.2.3"
+  resolved "http://registry.npm.taobao.org/vlq/download/vlq-0.2.3.tgz#8f3e4328cf63b1540c0d67e1b2778386f8975b26"
 
 vm-browserify@0.0.4:
   version "0.0.4"
