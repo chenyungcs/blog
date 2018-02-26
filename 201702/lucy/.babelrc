@@ -1,5 +1,5 @@
 {
-  "presets": ["flow", "react"],
+  "presets": ["env", "flow", "react"],
   "plugins": [
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }],
     ["transform-class-properties", {"spec": true}],

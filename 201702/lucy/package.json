@@ -10,16 +10,22 @@
     "server": "node app.js",
     "client": "flow check && parcel build ./client/index.html --public-url ./ -d ./client/dist",
     "client.start": "parcel ./client/index.html -d ./client/dist -p 4000",
-    "backend.start": "parcel ./backend/index.html -d ./backend/dist -p 3000"
+    "backend.start": "parcel ./backend/index.html -d ./backend/dist -p 3000",
+    "test": "jest"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
+    "babel-jest": "^22.4.1",
     "babel-plugin-import": "^1.6.3",
     "babel-plugin-react-flow-props-to-prop-types": "^0.15.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.17.0",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-flowtype": "^2.43.0",
@@ -32,7 +38,9 @@
     "flow-bin": "^0.65.0",
     "jest": "^22.2.2",
     "less": "^2.7.3",
-    "parcel-bundler": "^1.5.1"
+    "parcel-bundler": "^1.5.1",
+    "react-test-renderer": "^16.2.0",
+    "regenerator-runtime": "^0.11.1"
   },
   "dependencies": {
     "antd": "^3.2.0",

@@ -5,8 +5,12 @@
  */
 import React from 'react';
 
+export type ButtonType = 'primary' | 'ghost' | 'dashed' | 'danger';
+export type ButtonSize = 'small' | 'normal' | 'large';
+
 export type ButtonProps = {
     prefixCls: string,
+    type?: ButtonType,
     name?: string
 }
 
