@@ -8,8 +8,7 @@
     "rules": {
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
-        "indent": ["error", 4, { "SwitchCase": 1 }],
-        "semi": [2, "always"],
+        "semi": ["error", "never"],
         "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 5, "maxBOF": 0 }]
     },
     "settings": {

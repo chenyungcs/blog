@@ -4,9 +4,11 @@
  * @author    : yunchen
  * @createdAt : 10/02/2018
  */
-import React from 'react';
-import {Button} from '../components';
-import Todo from '../views/todo';
+import React from 'react'
+import {Button} from '../components'
+import Todo from '../views/todo'
+import user from '../../store/user'
+import {INCREMENT, DECREMENT} from '../../store/types'
 
 type Props = {
     name: string
@@ -26,30 +28,30 @@ type ToggleState = {
  * @constructor
  */
 function WarningBanner (props) {
-    if (!props.warn) {
-        return null;
-    }
+  if (!props.warn) {
+    return null
+  }
 
-    const style = {
-        background: 'yellow',
-        color: '#fff'
-    };
+  const style = {
+    background: 'yellow',
+    color: '#fff'
+  }
 
-    return <div style={style}>{props.warn}</div>
+  return <div style={style}>{props.warn}</div>
 }
 
 class Toggle extends React.Component<ToggleType, ToggleState> {
     static defaultProps = {
-        isOn: true
+      isOn: true
     };
 
     constructor (props) {
-        super(props);
+      super(props)
 
-        this.state = {
-            isOn: props.isOn,
-            name: props.isOn ? '开启' : '关闭'
-        };
+      this.state = {
+        isOn: props.isOn,
+        name: props.isOn ? '开启' : '关闭'
+      }
     }
 
     /**
@@ -57,19 +59,27 @@ class Toggle extends React.Component<ToggleType, ToggleState> {
      * @param e
      */
     handleClick (e) {
-        this.setState({
-            isOn: !this.state.isOn,
-            name: this.state.isOn ? '关闭' : '开启'
-        });
+      const type = this.state.isOn ? INCREMENT : DECREMENT
+      user.dispatch({type})
+      this.setState({
+        isOn: !this.state.isOn,
+        name: this.state.isOn ? '关闭' : '开启'
+      })
+    }
+
+    componentDidMount () {
+      user.subscribe(() => {
+        console.log('user -> ', user.getState())
+      })
     }
 
     render () {
-        const {name, isOn} = this.state;
-        return (
-            <div>
-                <button onClick={this.handleClick.bind(this)}>{name}</button>
-            </div>
-        );
+      const {name, isOn} = this.state
+      return (
+        <div>
+          <button onClick={this.handleClick.bind(this)}>{name}</button>
+        </div>
+      )
     }
 }
 
@@ -80,14 +90,14 @@ class Toggle extends React.Component<ToggleType, ToggleState> {
  * @constructor
  */
 export default function App (props: Props) {
-    const toggle = <Toggle/>
-    return (
-        <div>
-            {toggle}
-            <Todo/>
-            <h1>halo {props.name}</h1>
-        </div>
-    );
+  const toggle = <Toggle/>
+  return (
+    <div>
+      {toggle}
+      <Todo/>
+      <h1>halo {props.name}</h1>
+    </div>
+  )
 }
 
 App.defaultProps = {name: '张三'}
