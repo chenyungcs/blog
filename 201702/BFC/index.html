@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC demo</title>
+    <style >
+        section, aside, content {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <h3>BFC 阻止外边距层叠</h3>
+    <div style="background: #096dd9">
+        <p style="margin: 20px 0;">我是上下边距20px的小明</p>
+        <p style="margin: 20px 0;">我是上下边距20px的小东，"小明，你怎么压着我"</p>
+    </div>
+    <hr>
+    <div style="background: #096dd9; overflow: auto">
+        <p style="margin: 20px 0;">BFC: 我是上下边距20px的小明</p>
+    </div>
+    <div style="background: #096dd9; overflow: auto">
+        <p style="margin: 20px 0;">BFC: 我是上下边距20px的小东，"咱两好朋友"</p>
+    </div>
+
+    <h4>BFC 可以包含浮动元素</h4>
+
+    <div style="border: 1px solid red;">
+        <div style="float: left">我是调皮的小明</div>
+    </div>
+    <div style="border: 1px solid red; overflow: auto; width: 100%">
+        <div style="float: left">我是小东，低调不失礼貌</div>
+    </div>
+
+    <h4>BFC 可以阻止元素被浮动元素覆盖</h4>
+
+    <section style="overflow: auto">
+        <aside style="float: left; width: 100px; height: 20px; background: red;">小明的日常</aside>
+        <content style="background: #40a9ff">
+            小东今天话多，说了乱七八糟的，如上文所说，浮动元素的块级兄弟元素会无视浮动元素的位置，尽量占满一整行，这样就会被浮动元素覆盖，为该兄弟元素触发 BFC 后可以阻止这种情况的发生。
+        </content>
+    </section>
+
+    <hr/>
+
+    <section style="overflow: auto; width: 260px;">
+        <aside style="float: left; width: 100px; height: 20px; background: red;">小明的日常</aside>
+        <content style="background: #40a9ff; overflow: auto">
+            小东: "小明你刚才压着我了"。小明使用BFC 后，情况有所好转
+        </content>
+    </section>
+</body>
+</html>
