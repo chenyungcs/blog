@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App has a void snapshot 1`] = `
+<section
+  className="page"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <button
+      type="submit"
+    >
+      搜索
+    </button>
+  </form>
+  <section>
+    <ul
+      className="table"
+    />
+  </section>
+  <button
+    className="button-link button-active"
+    onClick={[Function]}
+    type="button"
+  >
+    下一页 
+    1
+  </button>
+</section>
+`;
