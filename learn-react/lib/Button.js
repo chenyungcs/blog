@@ -5,6 +5,9 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
+import TWEEN from '@tweenjs/tween.js'
+
+console.log(TWEEN.Tween)
 
 const Button = ({ onClick, className, children }) => (
   <button
@@ -24,7 +27,7 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
-  className: 'button-link button-active'
+  className: ''
 }
 
 export default Button

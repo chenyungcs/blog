@@ -4,13 +4,48 @@
  * @createdAt : 06/03/2018
  */
 import React, { Component } from 'react'
-import { Button, Table, Search } from '../../../lib'
 import fetch from 'isomorphic-fetch'
+import { Button, Table, Search } from '../../../lib'
+import store, { addTodo, toggleTodo, visibleTodo } from '../../actions'
+
+
+// 打印初始状态
+console.log(store.getState())
+
+// 每次 state 更新时，打印日志
+// 注意 subscribe() 返回一个函数用来注销监听器
+const unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+)
+
+// 发起一系列 action
+store.dispatch(addTodo('Learn about actions'))
+store.dispatch(addTodo('Learn about reducers'))
+store.dispatch(addTodo('Learn about store'))
+store.dispatch(toggleTodo(2))
+store.dispatch(toggleTodo(1))
+store.dispatch(visibleTodo('SHOW_ONE'))
+
+// 停止监听 state 更新
+unsubscribe()
 
 const Loading = () => (
   <div style={{padding: '0 10px'}}>Loading...</div>
 )
 
+const withLoading = (Comp) => ({ isLoading, ...rest }) => (
+  isLoading
+    ? <Loading />
+    : <Comp {...rest} />
+)
+
+const ButtonWithLoading = withLoading(Button)
+
+function controller (target) {
+  target.prototype.__author__ = 'yunchen'
+}
+
+@controller
 export default class App extends Component {
   constructor (props) {
     super(props)
@@ -20,7 +55,8 @@ export default class App extends Component {
       page: 0,
       list: [],
       error: '',
-      loading: false
+      loading: false,
+      sortKey: 'NONE'
     }
     this.lock = false
 
@@ -28,6 +64,7 @@ export default class App extends Component {
     this.fetchData = this.fetchData.bind(this)
     this.onSearchSubmit = this.onSearchSubmit.bind(this)
     this.onDismiss = this.onDismiss.bind(this)
+    this.onSort = this.onSort.bind(this)
   }
 
   fetchData (keywords = '', page = 0) {
@@ -79,12 +116,23 @@ export default class App extends Component {
     })
   }
 
+  onSort (sortKey) {
+    this.setState({sortKey})
+  }
+
   render () {
-    const { searchTerm, list, page = 0, error, loading } = this.state
+    const {
+      searchTerm,
+      list,
+      page = 0,
+      error,
+      loading,
+      sortKey
+    } = this.state
 
     return (
       <section className="page">
-        { error
+        {error
           ? <p>{error}</p>
           : <Search
             value={searchTerm}
@@ -92,11 +140,20 @@ export default class App extends Component {
             onSubmit={this.onSearchSubmit}
           />
         }
-        {list && <Table list={list} pattern={searchTerm} onDismiss={this.onDismiss} />}
-        { loading
-          ? <Loading />
-          : <Button onClick={() => this.fetchData(searchTerm, page + 1)}>下一页 {page + 1}</Button>
+        {list && <Table
+          list={list}
+          pattern={searchTerm}
+          onDismiss={this.onDismiss}
+          onSort={this.onSort}
+          sortKey={sortKey}
+        />
         }
+        <ButtonWithLoading
+          isLoading={loading}
+          onClick={() => this.fetchData(searchTerm, page + 1)}
+        >
+          下一页 {page + 1}
+        </ButtonWithLoading>
       </section>
     )
   }

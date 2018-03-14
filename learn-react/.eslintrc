@@ -8,7 +8,7 @@
     },
     "rules": {
         "react/jsx-uses-react": "error",
-        "react/jsx-closing-bracket-location": 2,
+        "react/jsx-closing-bracket-location": [1, "line-aligned"],
         "react/jsx-boolean-value": 2,
         "react/jsx-tag-spacing": 2,
         "jsx-quotes": ["error", "prefer-double"],
