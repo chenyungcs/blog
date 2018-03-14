@@ -31,6 +31,7 @@ describe('Button', () => {
   const props = {
     className: 'btn'
   }
+
   const element = shallow(<Button {...props}>搜索</Button>)
 
   it('text is "搜索"', () => {
